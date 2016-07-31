@@ -1,0 +1,122 @@
+Occupation	Occupation name
+141	Accommodation and Hospitality Managers
+221	Accountants, Auditors and Company Secretaries
+551	Accounting Clerks and Bookkeepers
+131	Advertising, Public Relations and Sales Managers
+311	Agricultural, Medical and Science Technicians
+231	Air and Marine Transport Professionals
+361	Animal Attendants and Trainers, and Shearers
+232	Architects, Designers, Planners and Surveyors
+211	Arts Professionals
+731	Automobile, Bus and Rail Drivers
+320	Automotive and Engineering Trades Workers nfd
+321	Automotive Electricians and Mechanics
+331	Bricklayers, and Carpenters and Joiners
+312	Building and Engineering Technicians
+132	Business Administration Managers
+261	Business and Systems Analysts, and Programmers
+220	Business, Human Resource and Marketing Professionals nfd
+541	Call or Contact Centre Information Clerks
+420	Carers and Aides nfd
+631	Checkout Operators and Office Cashiers
+111	Chief Executives, General Managers and Legislators
+421	Child Carers
+811	Cleaners and Laundry Workers
+500	Clerical and Administrative Workers nfd
+561	Clerical and Office Support Workers
+400	Community and Personal Service Workers nfd
+821	Construction and Mining Labourers
+330	Construction Trades Workers nfd
+133	Construction, Distribution and Production Managers
+511	Contract, Program and Project Administrators
+262	Database and Systems Administrators, and ICT Security Specialists
+441	Defence Force Members, Fire Fighters and Police
+732	Delivery Drivers
+230	Design, Engineering, Science and Transport Professionals nfd
+422	Education Aides
+240	Education Professionals nfd
+134	Education, Health and Welfare Services Managers
+341	Electricians
+342	Electronics and Telecommunications Trades Workers
+340	Electrotechnology and Telecommunications Trades Workers nfd
+233	Engineering Professionals
+322	Fabrication Engineering Trades Workers
+830	Factory Process Workers nfd
+841	Farm, Forestry and Garden Workers
+121	Farmers and Farm Managers
+552	Financial and Insurance Clerks
+222	Financial Brokers and Dealers, and Investment Advisers
+332	Floor Finishers and Painting Trades Workers
+851	Food Preparation Assistants
+831	Food Process Workers
+351	Food Trades Workers
+891	Freight Handlers and Shelf Fillers
+531	General Clerks
+333	Glaziers, Plasterers and Tilers
+391	Hairdressers
+411	Health and Welfare Support Workers
+251	Health Diagnostic and Promotion Professionals
+250	Health Professionals nfd
+252	Health Therapy Professionals
+362	Horticultural Trades Workers
+431	Hospitality Workers
+140	Hospitality, Retail and Service Managers nfd
+223	Human Resource and Training Professionals
+313	ICT and Telecommunications Technicians
+135	ICT Managers
+263	ICT Network and Support Professionals
+260	ICT Professionals nfd
+224	Information and Organisation Professionals
+611	Insurance Agents and Sales Representatives
+532	Keyboard Operators
+800	Labourers nfd
+271	Legal Professionals
+591	Logistics Clerks
+710	Machine and Stationary Plant Operators nfd
+711	Machine Operators
+700	Machinery Operators and Drivers nfd
+100	Managers nfd
+323	Mechanical Engineering Trades Workers
+212	Media Professionals
+253	Medical Practitioners
+254	Midwifery and Nursing Professionals
+599	Miscellaneous Clerical and Administrative Workers
+249	Miscellaneous Education Professionals
+839	Miscellaneous Factory Process Workers
+149	Miscellaneous Hospitality, Retail and Service Managers
+899	Miscellaneous Labourers
+639	Miscellaneous Sales Support Workers
+139	Miscellaneous Specialist Managers
+399	Miscellaneous Technicians and Trades Workers
+721	Mobile Plant Operators
+234	Natural and Physical Science Professionals
+550	Numerical Clerks nfd
+512	Office and Practice Managers
+390	Other Technicians and Trades Workers nfd
+832	Packers and Product Assemblers
+324	Panelbeaters, and Vehicle Body Builders, Trimmers and Painters
+521	Personal Assistants and Secretaries
+423	Personal Carers and Assistants
+451	Personal Service and Travel Workers
+334	Plumbers
+392	Printing Trades Workers
+442	Prison and Security Officers
+200	Professionals nfd
+612	Real Estate Sales Agents
+542	Receptionists
+142	Retail Managers
+730	Road and Rail Drivers nfd
+621	Sales Assistants and Salespersons
+600	Sales Workers nfd
+225	Sales, Marketing and Public Relations Professionals
+241	School Teachers
+272	Social and Welfare Professionals
+130	Specialist Managers nfd
+452	Sports and Fitness Workers
+712	Stationary Plant Operators
+741	Storepersons
+300	Technicians and Trades Workers nfd
+242	Tertiary Education Teachers
+393	Textile, Clothing and Footwear Trades Workers
+733	Truck Drivers
+394	Wood Trades Workers

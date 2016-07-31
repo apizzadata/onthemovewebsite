@@ -1,0 +1,27 @@
+COB	COB name
+11	Australia (includes External Territories)
+84	Caribbean
+83	Central America
+91	Central and West Africa
+72	Central Asia
+61	Chinese Asia (includes Mongolia)
+33	Eastern Europe
+22	Ireland
+62	Japan and the Koreas
+51	Mainland South-East Asia
+52	Maritime South-East Asia
+13	Melanesia
+14	Micronesia
+42	Middle East
+12	New Zealand
+41	North Africa
+81	Northern America
+24	Northern Europe
+15	Polynesia (excludes Hawaii)
+82	South America
+32	South Eastern Europe
+92	Southern and East Africa
+71	Southern Asia
+31	Southern Europe
+21	United Kingdom, Channel Islands and Isle of Man
+23	Western Europe

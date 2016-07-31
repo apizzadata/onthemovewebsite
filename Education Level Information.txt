@@ -1,0 +1,15 @@
+HEAP	HEAP label
+41	Advanced Diploma and Associate Degree Level
+40	Advanced Diploma and Diploma Level, nfd
+31	Bachelor Degree Level
+52	Certificate I & II Level
+51	Certificate III & IV Level
+50	Certificate Level, nfd
+42	Diploma Level
+11	Doctoral Degree Level
+22	Graduate Certificate Level
+20	Graduate Diploma and Graduate Certificate Level, nfd
+21	Graduate Diploma Level
+12	Master Degree Level
+10	Postgraduate Degree Level, nfd
+6	School Education Level
