@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>On the Move</title>
+
+
+  <!-- Bootstrap Core CSS -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="inc/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
+
+  <script src="inc/jquery-2.2.4.min.js"></script> -->
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="inc/jquery-jvectormap-2.0.3.min.js"></script>
+  <script src="inc/jquery-jvectormap-world-mill.js"></script>
+  <script src="inc/pop-data-world.js"></script>
+  <script src="inc/chart.min.js"></script>
+
+  <script src="data/inputdata.js"></script>
+
+  <style>
+    #world-map-pop {
+      position: absolute;
+      left: 0px;
+      top: 50px;
+      z-index: -1;
+    }
+
+    #fixed-div {
+      position: fixed;
+      top: 1em;
+      right: 1em;
+    } 
+  </style>
+
+</head>
+<body>
+
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img class="navbar-brand" src="inc/robot.png">
+        <a class="navbar-brand" href="index.html">On the Move</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="index.html">Global Map</a></li>
+           <li><a href="australia.html">Australia Map</a></li>
+           <li><a href="job.html">Job Vacancy Map</a></li>
+           <li><a href="summary.html">Summary</a></li>
+           <li><a href="robot.html">Chart Robot</a></li>
+           <li><a href="machine.html">Machine Learning</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+
+  <!-- Map -->
+  <div id="world-map-pop" style="width: 100%; height: 90%"></div>
+
+  <div id="fixed-div" class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title">Details</h3>
+    </div>
+    <div class="panel-body">
+      Global Map
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+          <script src="inc/highcharts.js"></script>
+          <script src="inc/exporting.js"></script>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <div id="container1" style="min-width: 310px; height: 310px; margin: 0 auto"></div>
+              </div>
+              <div class="col-sm-4">
+                <div id="container3" style="min-width: 310px; height: 310px; margin: 0 auto"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="container2" style="min-width: 310px; height: 310px; margin: 0 auto"></div>
+          <div id="container4" style="min-width: 310px; height: 310px; margin: 0 auto"></div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    $(function(){
+      $('#world-map-pop').vectorMap({
+        map: 'world_mill',
+        backgroundColor:  "#085DAD",
+        series: {
+          regions: [{
+            values: popData,
+            scale: ['#FFFFFF', '#8CC739'],
+            normalizeFunction: 'polynomial'
+          }]
+        },
+
+      onRegionTipShow: function(e, el, code){
+        el.html(el.html()+' (Migrants - '+popData[code]+')');
+      },
+      
+      onRegionClick: function(event, code){
+
+        $('#myModal').modal('show')
+        console.log(code);
+        document.getElementById("myModalLabel").innerHTML = "Details of "+ code;
+
+        $('#myModal').on('shown.bs.modal', function (e) {
+
+          /* data */
+          var seed = code.charCodeAt(0);
+          function random() {
+            var x = Math.sin(seed++) * 10000;
+            return x - Math.floor(x);
+          }
+
+        $('#container1').highcharts({
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+          },
+          title: {
+              text: "Gender Ratio of " + code
+          },subtitle: {
+            text: 'Source: DSS Settlement Data as of 06 July 2016'
+          },
+          tooltip: {
+              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                  color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+              }
+            }
+          },
+          series: [{
+            name: code,
+            colorByPoint: true,
+            data: [{
+              name: 'Male',
+              y: Math.floor(random() * 60) + 40  
+            }, {
+              name: 'Female',
+              y: Math.floor(random() * 60) + 40 
+            }]
+          }]
+        });
+        
+
+        $('#container2').highcharts({
+          chart: {
+            type: 'column'
+          },
+          title: {
+            text: "Age Distribution of "+code
+          },
+          subtitle: {
+            text: 'Source: DSS Settlement Data as of 06 July 2016'
+          },
+          xAxis: {
+            categories: [
+
+                '0-5',
+                '6-11',
+                '12-15',
+                '16-17',
+                '18-24',
+                '25-34',
+                '35-44',
+                '45-54',
+                '55-64',
+                '65+',
+            ]
+          },
+          yAxis: {
+              min: 0,
+              title: {
+                text: 'Number of People'
+              }
+          },
+          tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+          },
+          plotOptions: {
+              column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+              }
+          },
+          series: [{
+            name: 'Age Range',
+            data: [Math.floor(random() * 5733) + 500  , Math.floor(random() * 52050) + 15000  , Math.floor(random() * 24135) + 5000  , Math.floor(random() * 10733) + 2000  , Math.floor(random() * 53122) + 15000 , Math.floor(random() * 271807) + 50000  , Math.floor(random() * 131560) + 20000  , Math.floor(random() * 45290) + 5000  , Math.floor(random() * 25617) + 4000  , Math.floor(random() * 16485) + 2000]
+          }]
+        });
+
+
+
+        $('#container3').highcharts({
+            chart: {
+              plotBackgroundColor: null,
+              plotBorderWidth: null,
+              plotShadow: false,
+              type: 'pie'
+            },
+            title: {
+                text: "Migration Stream of " + code
+            },subtitle: {
+              text: 'Source: DSS Settlement Data as of 06 July 2016'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+              pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                  enabled: true,
+                  format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                  style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                  }
+                }
+              }
+            },
+            series: [{
+              name: code,
+              colorByPoint: true,
+              data: [{
+                name: 'Skilled',
+                y: Math.floor(random() * 421011) + 50000  
+              }, {
+                name: 'Family',
+                y: Math.floor(random() * 215134) + 20000 
+              }, {
+                name: 'Other',
+                y: Math.floor(random() * 29) + 15 
+              }, {
+                name: 'Humanitarian',
+                y: Math.floor(random() * 51958) + 5000
+              }]
+            }]
+          });
+         
+
+        $('#container4').highcharts({
+          chart: {
+            type: 'column'
+          },
+          title: {
+            text: "Residential State or Territory"
+          },
+          subtitle: {
+            text: 'Source: DSS Settlement Data as of 06 July 2016'
+          },
+          xAxis: {
+            categories: [
+                'ACT',
+                'NSW',
+                'NT',
+                'QLD',
+                'SA',
+                'TAS',
+                'VIC',
+                'WA',
+                'External Territories',
+                'Not Recorded'
+            ]
+          },
+          yAxis: {
+              min: 0,
+              title: {
+                text: 'Number of People'
+              }
+          },
+          tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+          },
+          plotOptions: {
+              column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+              }
+          },
+          series: [{
+            name: 'State or Territory',
+            data: [Math.floor(random() * 12288) + 2000  , Math.floor(random() * 228293) + 15000  , Math.floor(random() * 7450) + 1000  , Math.floor(random() * 89544) + 12000  , Math.floor(random() * 43256) + 6000  , Math.floor(random() * 5380) + 800  , Math.floor(random() * 196326) + 30000, Math.floor(random() * 99512) + 20000, Math.floor(random() * 41) + 5, Math.floor(random() * 6042) + 700]
+          }]
+        });
+      });
+    },
+  });
+});
+</script>
+
+  
+<script>
+$(function () {
+    /* ChartJS */
+
+    //-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+    var pieChart = new Chart(pieChartCanvas);
+    var PieData = [
+      {
+        value: 700,
+        color: "#f56954",
+        highlight: "#f56954",
+        label: "0"
+      },
+      {
+        value: 500,
+        color: "#00a65a",
+        highlight: "#00a65a",
+        label: "1"
+      },
+      {
+        value: 400,
+        color: "#f39c12",
+        highlight: "#f39c12",
+        label: "2"
+      },
+      {
+        value: 600,
+        color: "#00c0ef",
+        highlight: "#00c0ef",
+        label: "3"
+      },
+      {
+        value: 300,
+        color: "#3c8dbc",
+        highlight: "#3c8dbc",
+        label: "4"
+      },
+      {
+        value: 100,
+        color: "#d2d6de",
+        highlight: "#d2d6de",
+        label: "5"
+      }
+    ];
+    var pieOptions = {
+      //Boolean - Whether we should show a stroke on each segment
+      segmentShowStroke: true,
+      //String - The colour of each segment stroke
+      segmentStrokeColor: "#fff",
+      //Number - The width of each segment stroke
+      segmentStrokeWidth: 2,
+      //Number - The percentage of the chart that we cut out of the middle
+      percentageInnerCutout: 50, // This is 0 for Pie charts
+      //Number - Amount of animation steps
+      animationSteps: 100,
+      //String - Animation easing effect
+      animationEasing: "easeOutBounce",
+      //Boolean - Whether we animate the rotation of the Doughnut
+      animateRotate: true,
+      //Boolean - Whether we animate scaling the Doughnut from the centre
+      animateScale: false,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive: true,
+      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio: true,
+      //String - A legend template
+      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+    };
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    pieChart.Doughnut(PieData, pieOptions);
+  });
+</script>
+
+
+<script>
+  $(function () {
+
+    //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas = $("#barChart").get(0).getContext("2d");
+    var barChart = new Chart(barChartCanvas);
+
+    var barChartData = {
+      labels: ["1", "2", "3", "4", "5", "6", "7"],
+      datasets: [
+        {
+          label: "1",
+          fillColor: "rgba(210, 214, 222, 1)",
+          strokeColor: "rgba(210, 214, 222, 1)",
+          pointColor: "rgba(210, 214, 222, 1)",
+          pointStrokeColor: "#c1c7d1",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)",
+          data: [65, 59, 80, 81, 56, 55, 40]
+        },
+        {
+          label: "2",
+          fillColor: "rgba(60,141,188,0.9)",
+          strokeColor: "rgba(60,141,188,0.8)",
+          pointColor: "#3b8bba",
+          pointStrokeColor: "rgba(60,141,188,1)",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(60,141,188,1)",
+          data: [28, 48, 40, 19, 86, 27, 90]
+        }
+      ]
+    };
+
+    barChartData.datasets[1].fillColor = "#00a65a";
+    barChartData.datasets[1].strokeColor = "#00a65a";
+    barChartData.datasets[1].pointColor = "#00a65a";
+    var barChartOptions = {
+      //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+      scaleBeginAtZero: true,
+      //Boolean - Whether grid lines are shown across the chart
+      scaleShowGridLines: true,
+      //String - Colour of the grid lines
+      scaleGridLineColor: "rgba(0,0,0,.05)",
+      //Number - Width of the grid lines
+      scaleGridLineWidth: 1,
+      //Boolean - Whether to show horizontal lines (except X axis)
+      scaleShowHorizontalLines: true,
+      //Boolean - Whether to show vertical lines (except Y axis)
+      scaleShowVerticalLines: true,
+      //Boolean - If there is a stroke on each bar
+      barShowStroke: true,
+      //Number - Pixel width of the bar stroke
+      barStrokeWidth: 2,
+      //Number - Spacing between each of the X value sets
+      barValueSpacing: 5,
+      //Number - Spacing between data sets within X values
+      barDatasetSpacing: 1,
+      //String - A legend template
+      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+      //Boolean - whether to make the chart responsive
+      responsive: true,
+      maintainAspectRatio: true
+    };
+
+    barChartOptions.datasetFill = false;
+    barChart.Bar(barChartData, barChartOptions);
+  });
+</script>
+
+
+
+
+</body>
+</html>
