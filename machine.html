@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>On the Move</title>
+
+
+  <!-- Bootstrap Core CSS -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="inc/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
+
+  <script src="inc/jquery-2.2.4.min.js"></script> -->
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="inc/jquery-jvectormap-2.0.3.min.js"></script>
+  <script src="inc/jquery-jvectormap-au-mill.js"></script>
+  <script src="inc/pop-data-au.js"></script>
+  <script src="inc/chart.min.js"></script>
+
+  <script src="data/inputdata.js"></script>
+
+  <style>
+    #world-map-pop {
+      position: absolute;
+      left: 0px;
+      top: 50px;
+      z-index: -1;
+    }
+
+    #fixed-div {
+      position: fixed;
+      top: 1em;
+      right: 1em;
+    } 
+  </style>
+
+</head>
+<body>
+
+<!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img class="navbar-brand" src="inc/robot.png">
+        <a class="navbar-brand" href="index.html">On the Move</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="index.html">Global Map</a></li>
+           <li><a href="australia.html">Australia Map</a></li>
+           <li><a href="job.html">Job Vacancy Map</a></li>
+          <li><a href="summary.html">Summary</a></li>
+           <li><a href="robot.html">Chart Robot</a></li>
+           <li class="active"><a href="machine.html">Machine Learning</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+
+<hr><H1><center><u>Machine Learning Data Model</u></center></H1>
+  <section class="content">
+    <div class="row">
+      <div>
+        <div class="container">
+          <div class="row">
+
+
+
+
+            <p>
+            <b>Machine_Learning_Model</b><br>
+
+            <img src="inc/machinelearning.png" style="height:300px"><br><br>
+
+            Version: 1.1.1<br>
+
+            This Python file uses the Nearest Neighbour Machine Learning algorithm to learn the patterns in the published synthetic temporary skilled migrants data from ABS. This dataset 
+            is a sample of synthetic data including people's age, gender, country of birth, education level, occupation, industry and state where they live in. The 
+            machine learning algorithm looks for patterns on this data to classify State based on input data: age, gender, country of birth, education level, occupation, industry.<br>
+
+            Based on the user (migrants) inputs (such as user's age, gender and education levels) the algorithms looks for the historical data from the synthetic 
+            ABS employment dataset to find the state where the majority of people with a similar background lives in. Then the Python code filters the 
+            Department of Employment's job vacancies data to filter for jobs listed under that state. The job list is saved in "jobs.csv" file in the same directory.<br>
+
+            The idea is for the user to find the state that the majority of people lives in with a similar background. It also enables employers to find out in which area they are 
+            likely to find their desired employees, hence they can make their recruiment process more targeted.
+            Please make sure you unzip and extract all files into the same directory.<br>
+
+
+            <b><br><a href="https://github.com/apizzadata/Machine-Learning-Model-of-ABS-Employment-data">https://github.com/apizzadata/Machine-Learning-Model-of-ABS-Employment-data</a><br></b><br>
+
+            COPYRIGHT AND LICENSE:<br>
+
+            This is published under the MIT License.<br>
+
+
+            REQUIREMENTS:<br><br>
+
+                $ python --2.6 or later<br>
+
+            You can download python at:<br>
+
+                http://www.python.org<br>
+                $ Numpy -- 1.8.1 or later<br>
+                $ Scipy -- 0.14.0 or later<br>
+                $ scikit-learn<br>
+
+            TO INSTALL:<br>
+
+                1. Download and unzip the files into a directory.<br>
+                2. Open a command line window in the directory above.<br>
+                3. Run "python Machine_Learning_Model.py" and follow the instructions.<br>
+
+            list of files contained is:<br>
+            Machine_Learning_Model.py<br>
+            MLModel.pkl<br>
+            JPO-coded.csv<br>
+            Country of Birth Information.txt<br>
+            Education Level Information.txt<br>
+            Industry List.txt<br>
+            Occupation List.txt<br>
+
+
+            <hr>
+
+
+
+          </div>
+        </div>
+    </div> 
+  </div>
+
+
+
+
+</body>
+</html>

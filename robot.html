@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>On the Move</title>
+
+
+  <!-- Bootstrap Core CSS -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="inc/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
+
+  <script src="inc/jquery-2.2.4.min.js"></script> -->
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="inc/jquery-jvectormap-2.0.3.min.js"></script>
+  <script src="inc/jquery-jvectormap-au-mill.js"></script>
+  <script src="inc/pop-data-au.js"></script>
+  <script src="inc/chart.min.js"></script>
+
+  <script src="data/inputdata.js"></script>
+
+  <style>
+    #world-map-pop {
+      position: absolute;
+      left: 0px;
+      top: 50px;
+      z-index: -1;
+    }
+
+    #fixed-div {
+      position: fixed;
+      top: 1em;
+      right: 1em;
+    } 
+  </style>
+
+</head>
+<body>
+
+<!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img class="navbar-brand" src="inc/robot.png">
+        <a class="navbar-brand" href="index.html">On the Move</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="index.html">Global Map</a></li>
+           <li><a href="australia.html">Australia Map</a></li>
+           <li><a href="job.html">Job Vacancy Map</a></li>
+          <li><a href="summary.html">Summary</a></li>
+           <li class="active"><a href="robot.html">Chart Robot</a></li>
+           <li><a href="machine.html">Machine Learning</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+
+<hr><H1><center><u>Settlement Data Query Bot</u></center></H1>
+  <section class="content" style="text-align:center">
+    <div class="row">
+      <div>
+        <div class="container">
+          <div class="row">
+              <div class="col-sm-6">
+                <img src="inc/robot-large.png" class="img-rounded" alt="" width="250" height="250">
+              </div>
+              <div class="col-sm-6">
+                <br>
+                <input type="text" class="form-control" placeholder="Enter your Query">
+                <br>
+                <button type="button" class="btn btn-success pull-left" data-toggle="modal" data-target="#myModal1">Command the Robot!</button>
+              </div>
+          </div>
+    </div> 
+  </div>
+
+  <hr>
+  <p>Using machine learning and advanced data processing, graphs and charts can be easily generated.<br>Use simple language such as <b>"Age Distribution of Migrants from UK"</b> or <b>"Gender Ratio of New Zealand Migrants"</b>.</p>
+  <section class="content">
+    <div class="row">
+      <div class="container">
+        <div class="row">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Age Distribution of Migrants from UK</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Gender Ratio of New Zealand Migrants</button>
+        </div>
+    </div>
+  </div>
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+
+          <p>The server is under heavy load. Please try again later ...</p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <script>
+
+      
+      onRegionClick: function(event, code){
+
+        $('#myModal1').modal('show')
+   
+        $('#myModal1').on('shown.bs.modal', function (e) {
+
+
+
+        $('#container1').highcharts({
+          chart: {
+            type: 'column'
+          },
+          title: {
+            text: "Age Distribution of Migrants from UK"
+          },
+          subtitle: {
+            text: 'Source: DSS Settlement Data as of 06 July 2016'
+          },
+          xAxis: {
+            categories: [
+                '0-10',
+                '10-20',
+                '20-30',
+                '30-40',
+                '40-50',
+                '50-65',
+                '65+',
+                '0-10',
+                '0-10',
+                '0-10',
+            ]
+          },
+          yAxis: {
+              min: 0,
+              title: {
+                text: 'Number of People'
+              }
+          },
+          tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+          },
+          plotOptions: {
+              column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+              }
+          },
+          series: [{
+            name: 'Age Range',
+            data: [1,2,3,4,5,6,7,8,9,10 ]
+          }]
+        });
+
+          $('#container2').highcharts({
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+          },
+          title: {
+              text: "Gender Ratio of New Zealand Migrants"
+          },subtitle: {
+            text: 'Source: DSS Settlement Data as of 06 July 2016'
+          },
+          tooltip: {
+              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                  color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+              }
+            }
+          },
+          series: [{
+            name: code,
+            colorByPoint: true,
+            data: [{
+              name: 'Male',
+              y: 1 
+            }, {
+              name: 'Female',
+              y: 2
+            }]
+          }]
+        });
+        
+
+      });
+    },
+  });
+});
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>On the Move</title>
+
+
+  <!-- Bootstrap Core CSS -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="inc/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
+
+  <script src="inc/jquery-2.2.4.min.js"></script> -->
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="inc/jquery-jvectormap-2.0.3.min.js"></script>
+  <script src="inc/jquery-jvectormap-au-mill.js"></script>
+  <script src="inc/pop-data-au.js"></script>
+  <script src="inc/chart.min.js"></script>
+
+  <script src="data/inputdata.js"></script>
+
+  <style>
+    #world-map-pop {
+      position: absolute;
+      left: 0px;
+      top: 50px;
+      z-index: -1;
+    }
+
+    #fixed-div {
+      position: fixed;
+      top: 1em;
+      right: 1em;
+    } 
+  </style>
+
+</head>
+<body>
+
+<!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img class="navbar-brand" src="inc/robot.png">
+        <a class="navbar-brand" href="index.html">On the Move</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="index.html">Global Map</a></li>
+           <li><a href="australia.html">Australia Map</a></li>
+           <li><a href="job.html">Job Vacancy Map</a></li>
+          <li><a href="summary.html">Summary</a></li>
+           <li><a href="robot.html">Chart Robot</a></li>
+           <li><a href="machine.html">Machine Learning</a></li>
+          <li class="active"><a href="about.html">About Us</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+
+<hr><H1><center><u>About Us</u></center></H1>
+  <section class="content" style="text-align:center">
+    <div class="row">
+      <div>
+        <div class="container">
+          <div class="row">
+
+              <h2>Our Team</h2>
+              <br>
+              <img src="inc/team.jpg" style="height:450px">
+              <br><br>
+              We aim to build a visualisation tool that helps Policy Makers to work better with services providers by understanding the demographics and location distribution of migrants. The tool also helps new migrants to find out which area resides most people from similar backgrounds like them. For example, a newly arrived Chinese migrant might want to know where they can get their cooking condiments from, and where they can have authentic Chinese food, by looking at which suburb has the most Chinese migrants as an indicator. In addition, by putting down your background information, our machine learning model aims to help new migrants to learn about where people with similar backgrounds are working at.<br><br>
+
+              Our main dataset was the Settlement Data Extracted by Department of Social Services in July 2016. The SDB is a repository of information on permanent, and some temporary, migrants who have arrived in Australia since 1 January 1991. The dataset contains variables on current state, Local Government Area, Main Language, English Proficiency, Country of Birth, Gender and Migration Stream. The information of these variables are visualised in On The Move.
+              <br><br>
+
+
+          </div>
+
+          <div class="row">
+
+              <hr>
+              <u>Future Plans</u><br>
+              In the future we'd like our tool to include a detailed map of suburbs/local government areas that maps out employment opportunities for ease of use.
+              <br><br>
+          </div>
+
+          <div class="row">
+
+              <br>
+              <img src="inc/map.png" style="height:450px">
+              <br><br><br>
+          </div>
+
+
+
+          </div>
+        </div>
+    </div> 
+  </div>
+
+
+
+
+</body>
+</html>
